@@ -8,12 +8,14 @@ dependencies {
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.github.panpf.bintray-publish'
 // $ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
 publish {
-    userOrg = 'aprz'
+    userOrg = 'aprz512'
     groupId = 'com.aprz'
     artifactId = 'multitypeknife-annotation'
     publishVersion = "${rootProject.ext.publishVersion}"
     desc = 'multitypeknife\'s annotation'
+    repoName = 'tools'
+    website = 'https://github.com/aprz512/MultiTypeKnife'
 }

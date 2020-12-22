@@ -77,17 +77,17 @@ public class ItemBinderProcessor extends BaseProcessor {
 
             if (!superTypeElement.getQualifiedName()
                     .equals(elementUtils.getTypeElement(BASE_VIEW_HOLDER).getQualifiedName())) {
-                messager.printMessage(Diagnostic.Kind.ERROR, "没有继承 BaseViewHolder：" + element.toString());
+                messager.printMessage(Diagnostic.Kind.ERROR, "class should extend BaseViewHolder: " + element.toString());
                 return;
             }
 
             if (element.getModifiers().contains(PRIVATE)) {
-                messager.printMessage(Diagnostic.Kind.ERROR, "类修饰符不能为 private：" + element.toString() + "#" + element.toString());
+                messager.printMessage(Diagnostic.Kind.ERROR, "private modifiers is not allowed: " + element.toString() + "#" + element.toString());
                 return;
             }
 
             if (!element.getModifiers().contains(STATIC)) {
-                messager.printMessage(Diagnostic.Kind.ERROR, "类修饰符必须是 static：" + element.toString());
+                messager.printMessage(Diagnostic.Kind.ERROR, "you should add static modifiers: " + element.toString());
                 return;
             }
 
@@ -125,18 +125,18 @@ public class ItemBinderProcessor extends BaseProcessor {
             ItemLayoutId annotation = enclosedElement.getAnnotation(ItemLayoutId.class);
             if (annotation != null) {
                 if (enclosedElement.getModifiers().contains(PRIVATE)) {
-                    messager.printMessage(Diagnostic.Kind.ERROR, "字段修饰符不能为 private：" + element.toString() + "#" + enclosedElement.toString());
+                    messager.printMessage(Diagnostic.Kind.ERROR, "private modifiers is not allowed: " + element.toString() + "#" + enclosedElement.toString());
                     return null;
                 }
                 if (!enclosedElement.getModifiers().contains(STATIC)) {
-                    messager.printMessage(Diagnostic.Kind.ERROR, "字段修饰符必须是 static：" + element.toString() + "#" + enclosedElement.toString());
+                    messager.printMessage(Diagnostic.Kind.ERROR, "you should add static modifiers: " + element.toString() + "#" + enclosedElement.toString());
                     return null;
                 }
                 layoutRef = enclosedElement.toString();
             }
         }
         if (StringUtils.isEmpty(layoutRef)) {
-            messager.printMessage(Diagnostic.Kind.ERROR, "没有@ItemLayoutId修饰的字段 ：" + element.toString());
+            messager.printMessage(Diagnostic.Kind.ERROR, "at least one field should add @ItemLayoutId annotation: " + element.toString());
             return null;
         }
 

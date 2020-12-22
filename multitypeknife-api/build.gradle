@@ -32,12 +32,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
-apply plugin: 'com.novoda.bintray-release'
-// $ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+apply plugin: 'com.github.panpf.bintray-publish'
+// $ ./gradlew clean build bintrayUpload -PbintrayUser=aprz512 -PbintrayKey=xxx -PdryRun=false
 publish {
-    userOrg = 'aprz'
+    userOrg = 'aprz512'
     groupId = 'com.aprz'
     artifactId = 'multitypeknife-api'
     publishVersion = "${rootProject.ext.publishVersion}"
     desc = 'multitypeknife\'s api'
+    repoName = 'tools'
+    website = 'https://github.com/aprz512/MultiTypeKnife'
 }
