@@ -1,0 +1,34 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.squareup:javapoet:1.13.0'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    // 似乎无法依赖 android 工程
+    implementation project(path: ':multitypeknife-annotation')
+
+    implementation 'com.google.auto.service:auto-service:1.0-rc7'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+apply plugin: 'com.novoda.bintray-release'
+// $ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+publish {
+    userOrg = 'aprz'
+    groupId = 'com.aprz'
+    artifactId = 'multitypeknife-compiler'
+    publishVersion = "${rootProject.ext.publishVersion}"
+    desc = 'multitypeknife\'s compiler'
+}

@@ -1,0 +1,6 @@
+include ':mylibrary'
+include ':multitypeknife-annotation'
+include ':app'
+include ':multitypeknife-compiler'
+include ':multitypeknife-api'
+rootProject.name = "MultiTypeKnife"
