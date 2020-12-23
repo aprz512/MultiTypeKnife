@@ -37,9 +37,9 @@ apply plugin: 'com.github.panpf.bintray-publish'
 publish {
     userOrg = 'aprz512'
     groupId = 'com.aprz'
-    artifactId = 'multitypeknife-api'
+    artifactId = 'multitype-api'
     publishVersion = "${rootProject.ext.publishVersion}"
-    desc = 'multitypeknife\'s api'
+    desc = 'multitype\'s api'
     repoName = 'tools'
     website = 'https://github.com/aprz512/MultiTypeKnife'
 }

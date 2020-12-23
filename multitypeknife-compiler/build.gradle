@@ -8,8 +8,13 @@ dependencies {
     implementation 'org.apache.commons:commons-collections4:4.4'
     implementation 'org.apache.commons:commons-collections4:4.4'
     implementation 'androidx.annotation:annotation:1.1.0'
-    // 似乎无法依赖 android 工程
-    implementation project(path: ':multitypeknife-annotation')
+
+    if (rootProject.ext.developMode) {
+        // 似乎无法依赖 android 工程
+        implementation project(path: ':multitypeknife-annotation')
+    } else {
+        implementation "com.aprz:multitype-annotation:${rootProject.ext.publishVersion}"
+    }
 
     implementation 'com.google.auto.service:auto-service:1.0-rc7'
     annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
@@ -24,13 +29,13 @@ targetCompatibility = "1.8"
 
 
 apply plugin: 'com.github.panpf.bintray-publish'
-// $ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+// $ ./gradlew clean build bintrayUpload -PbintrayUser=aprz512 -PbintrayKey=xxx -PdryRun=false
 publish {
     userOrg = 'aprz512'
     groupId = 'com.aprz'
-    artifactId = 'multitypeknife-compiler'
+    artifactId = 'multitype-compiler'
     publishVersion = "${rootProject.ext.publishVersion}"
-    desc = 'multitypeknife\'s compiler'
+    desc = 'multitype\'s compiler'
     repoName = 'tools'
     website = 'https://github.com/aprz512/MultiTypeKnife'
 }

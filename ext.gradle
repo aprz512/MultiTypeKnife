@@ -1,3 +1,4 @@
 ext {
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
+    developMode = false
 }
