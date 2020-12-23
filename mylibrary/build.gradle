@@ -28,9 +28,15 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'me.drakeet.multitype:multitype:3.5.0'
-    implementation project(path: ':multitypeknife-annotation')
-    implementation project(path: ':multitypeknife-api')
-    annotationProcessor project(path: ':multitypeknife-compiler')
+    if (rootProject.ext.developMode) {
+        implementation project(':multitypeknife-annotation')
+        implementation project(':multitypeknife-api')
+        annotationProcessor project(':multitypeknife-compiler')
+    } else {
+        implementation "com.aprz:multitype-api:${rootProject.ext.publishVersion}"
+        implementation "com.aprz:multitype-annotation:${rootProject.ext.publishVersion}"
+        annotationProcessor "com.aprz:multitype-compiler:${rootProject.ext.publishVersion}"
+    }
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
